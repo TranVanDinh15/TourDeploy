@@ -1,0 +1,131 @@
+.wrapper {
+    background: url("https://preview.colorlib.com/theme/pacific/images/xbg_5.jpg.pagespeed.ic.ijesituTOZ.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    .form {
+        width: 376px;
+        height: 820px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--white);
+        padding: 48px 10px 29px 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+  }
+  .Heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px 0 40px 0;
+    h4 {
+      font-size: 60px;
+      font-family: "Satisfy", cursive;
+      user-select: none;
+    }
+    span{
+      margin-top: 20px;
+      color: red;
+      font-size: 16px;
+    }
+  }
+  .User { 
+    width: 300px;
+      border-bottom: 2px solid var(--primary);
+      background-color: var(--white);
+      overflow: hidden;
+      padding: 0 10px;
+    input {
+      width: 260px;
+      border: none;
+      outline: none;
+      color: var(--black);
+      padding: 10px;
+    }
+    + .User{
+      margin-top: 20px;
+    }
+    ::placeholder {
+        color: var(--black);
+    }
+    h5{
+        font-size: 18px;
+    }
+  }
+  .btn{
+      display: flex;
+      justify-content: center;
+      margin: 10px 0 20px 0;
+      height: 40px;
+      .btn__Item{
+          width: 200px;
+          height: 100%;
+          border: none;
+          outline: none;
+          background-color: var(--ff0000);
+          color: var(--white);
+          border-radius: 999px;
+          cursor: pointer;
+          transition: 0.2s;
+          margin-top: 10px;
+          &:hover{
+              background-color: rgb(255, 0, 0,0.6);
+          }
+      }
+      
+  }
+  .UserGender{
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    h5{
+        font-size: 18px;
+    }
+    .UserGender__item{
+        span{
+            font-size: 18px;
+            margin-right: 2px;
+        }
+        input{
+            width: 14px;
+            height: 14px;
+        }
+    }
+  }
+  .footer{
+      display: flex;
+      justify-content: center;
+      span{
+          font-size: 16px;
+      }
+      .signUp{
+          font-size: 16px;
+          color: var(--ff0000);
+          margin-left: 4px;
+      }
+  }
+  .errorNotification{
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  .image_container{
+    width: 500px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+    img{
+      width: 100%;
+      height: 820px;
+  
+    }
+  }
+  

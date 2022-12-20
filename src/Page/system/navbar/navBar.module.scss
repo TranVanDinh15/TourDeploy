@@ -1,0 +1,45 @@
+.NavBarContainer {
+    width: 100%;
+    display: flex;
+}
+.NavBarWrapper {
+    height: 100vh;
+    // width: 200px;
+    flex-basis: 15%;
+    background-color: #dddddd;
+}
+.NavBarWrapper__Item {
+    min-height: 200px;
+    background-color: #dddddd;
+    padding: 20px 0px;
+}
+.NavBarWrapper__Item__List {
+    padding-left: 0;
+    li {
+        font-size: 15px;
+        cursor: pointer;
+        list-style-type: none;
+        padding: 4px 20px;
+        &:hover {
+            background-color: #3071a9;
+            color: var(--white);
+        }
+    }
+}
+.PropertiesContainer {
+    flex-basis: 85%;
+}
+.NavBarWrapper__setting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid #000;
+    margin: 0 20px;
+    margin-top: 20px;
+    height: 40px;
+    background-color: #92a1ad;
+    color: var(--white);
+    svg {
+        margin-right: 10px;
+    }
+}

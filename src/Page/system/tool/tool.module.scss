@@ -1,0 +1,33 @@
+.ToolWrapper {
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+    background-color: #dddddd;
+}
+.ToolWrapper__List {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.ToolWrapper__List__Item {
+    display: flex;
+    align-items: center;
+    + .ToolWrapper__List__Item {
+        margin-left: 20px;
+    }
+    button {
+        border: none;
+        padding: 4px 20px;
+        color: var(--white);
+        border-radius: 2px;
+        svg {
+            padding: 0 4px;
+        }
+    }
+}
+.green {
+    background-color: green;
+    &:hover {
+        background-color: #46a546;
+    }
+}

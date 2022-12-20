@@ -1,0 +1,129 @@
+.FormContainer {
+    width: 100%;
+    padding: 20px;
+    .FormContainer__Item {
+        width: 100%;
+        height: 40px;
+        background-color: #92a1ad;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        color: var(--white);
+        font-size: 16px;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        svg {
+            color: var(--white);
+            margin-right: 10px;
+        }
+    }
+}
+
+.FormContainer__FormItem {
+    border: 1px solid #ccc;
+    display: flex;
+    flex-wrap: wrap;
+}
+.FormContainer__FormItem__nav {
+    display: flex;
+    flex-wrap: wrap;
+}
+.FormContainer__FormItem {
+    padding: 20px 10px;
+}
+.FormContainer__FormItem__field {
+    margin-bottom: 10px;
+    span {
+        font-weight: 600;
+    }
+}
+.FormContainer__FormItem__input {
+    padding: 6px 0;
+    border-radius: 10px;
+    input {
+        width: 200px;
+        height: 34px;
+        outline: none;
+        border: 1px solid #ccc;
+        padding: 0 10px;
+    }
+}
+.FormContainer__FormItem__container {
+    margin-top: 10px;
+    margin-left: 45px;
+}
+.FormContainer__FormItem__container__btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    button {
+        width: 100px;
+        height: 40px;
+        background-color: #0a95ff;
+        border: none;
+        color: #fff;
+        border-radius: 4px;
+        &:hover {
+            background-color: #000;
+        }
+    }
+}
+.FormContainer__FormItem__boxImage {
+    width: 200px;
+    height: 200px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.FormContainer__FormItem__file {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    input {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 111;
+        cursor: pointer;
+    }
+}
+.FormContainer__FormItem__input {
+    select {
+        width: 200px;
+        height: 34px;
+        outline: none;
+        border: 1px solid #ccc;
+        padding: 0 10px;
+    }
+}
+.FormContainer__FormItem__icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+        font-size: 20px;
+    }
+}
+.FormContainer__FormItem__boxImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

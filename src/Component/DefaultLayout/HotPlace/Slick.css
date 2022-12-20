@@ -1,0 +1,59 @@
+.PlaceHot{
+    margin-top: 100px;
+}
+.containerSlider{
+    margin: 0 40px;
+}
+.slick-arrow{
+    border-radius: 50% ;
+    margin: 0 20px;
+}
+.slick-arrow svg{
+    width: 30px !important;
+    height: 30px !important;
+}
+.containerCol{
+    position: relative;
+    width: 174px !important;
+    height: 234px !important;
+    transition: 0.2s;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.containerCol img{
+    width: 100%;
+    height: 100%;
+}
+
+.place span{
+    position: absolute;
+    bottom: 14px;
+    left: 20px;
+    font-size: 18px;
+    color: var(--white);
+    font-weight: 600;
+    z-index: 1;
+}
+.containerCol::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom,#00000000 0%,#00000080 100%);
+}
+.containerCol:hover{
+    transform: translateY(-4px);
+}
+.title__PlaceHot{
+    margin-left: 100px;
+}
+.title__PlaceHot h3{
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--title);
+}

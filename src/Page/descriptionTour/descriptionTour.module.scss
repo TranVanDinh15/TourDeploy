@@ -1,0 +1,258 @@
+.containerDescript {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .backGroundtour {
+    width: 1100px;
+    height: 400px;
+    margin-bottom: 40px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+  .titleDiscript {
+    span {
+      font-size: 18px;
+      color: #666;
+    }
+  }
+  .NameToursDescript {
+    margin: 40px 0;
+    flex-basis: 80%;
+    h3 {
+      font-size: 30px;
+      line-height: 1.5;
+    }
+  }
+}
+.contentDescript {
+  display: flex;
+  width: 1100px;
+  .PriceService {
+    flex-basis: 30%;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 8%);
+    padding: 20px;
+    margin-left: 20px;
+    height: 250px;
+    .PriceServiceItem {
+      span {
+        color: #666;
+      }
+    }
+    .contentService {
+      display: flex;
+      flex-direction: column;
+      .icon {
+        font-size: 18px;
+        margin-right: 4px;
+        margin: 10px 0;
+        color: var(--btn);
+      }
+      .icon2 {
+        font-size: 18px;
+        color: var(--btn);
+        margin: 10px 0;
+        margin-right: 6px;
+      }
+    }
+    .btn {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      a {
+        padding: 14px 30px;
+        // background-color: var(--btn);
+        background: linear-gradient(to right, #fa9e1b, #8d4fff);
+        color: var(--white);
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 600;
+        &:hover {
+          background: linear-gradient(to right, #8d4fff, #fa9e1b);
+        }
+      }
+    }
+  }
+}
+.ServiceDescript {
+  margin: 40px 0;
+  span {
+    font-size: 24px;
+    border-left: 6px solid var(--btn);
+    padding: 0 20px;
+    font-weight: 500;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+}
+.descriptionTour {
+  p {
+    text-align: justify;
+    font-size: 16px;
+  }
+}
+.Package {
+  background-color: rgb(204, 204, 204, 0.4);
+  padding: 20px;
+  border-radius: 10px;
+  .dateTour {
+    display: flex;
+    flex-direction: column;
+    span {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    input {
+      width: 200px;
+      border: none;
+      outline: none;
+      padding: 10px;
+      border-radius: 2px;
+    }
+  }
+  .Package__title span {
+    font-size: 20px;
+  }
+  .amount__title {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  .amountPerson {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    span {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .PricePerson {
+      color: #fa9e1b;
+    }
+    input{
+      width: 60px;
+      height: 30px;
+      outline: none;
+    }
+  }
+  .Pay {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+    .TextPrice {
+      display: flex;
+      flex-direction: column;
+      span:first-child {
+        font-size: 30px;
+        color: #fa9e1b;
+        font-weight: 600;
+        margin-top: 10px;
+        +span{
+          margin-top: 10px;
+        }
+      }
+      
+    }
+    .PayBtn {
+      display: flex;
+      flex-direction: column;
+      button:first-child {
+        border: none;
+        outline: none;
+        margin-right: 10px;
+        width: 200px;
+        height: 50px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        color: var(--white);
+        font-size: 16px;
+        background-color: var( --ff0000);
+        + button {
+          border: none;
+          outline: none;
+          margin-right: 10px;
+          width: 200px;
+          height: 50px;
+          background-color: #fa9e1b;
+          border-radius: 6px;
+          color: var(--white);
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+.priceContainer{
+  display: flex;
+  align-items: center;
+  span + span{
+    margin-left: 10px;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+  }
+}
+.detailtour{
+  display: flex;
+  font-size: 14px;
+}
+.comment{
+  margin: 0 80px;
+}
+.detailOrder{
+  width: 600px;
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 6px;
+  .detailTitle{
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  .TypeService{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    span{
+      color: #666;
+      +span{
+        color: var(--black);
+      }
+    }
+
+  }
+  .dateTour{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    span{
+      color: #666;
+      +span{
+        color: var(--black);
+      }
+    }
+  }
+  .amountDetail{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    span{
+      color: #666;
+      +span{
+        color: var(--black);
+      }
+    }
+  }
+}
+.detailDown:hover .AngleDown{
+  transform: rotate(180deg);
+}
+.AngleDown{
+  transition: 0.4s;
+}

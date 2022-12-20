@@ -1,0 +1,64 @@
+.loginSystemWrapper{
+    background-image: url(https://img.freepik.com/premium-vector/travel-tourism-background_1034-1190.jpg?w=2000);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginSystemWrapper__Item{
+    min-width: 420px;
+    min-height: 200px;
+    background-color: #612201;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    border: 6px solid var(--white);
+    .loginSystemWrapper__Item__Heading{
+        span{
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+.loginSystemWrapper__Item__Form{
+    justify-content: center;
+    margin: 6px 0;
+}
+.loginSystemWrapper__Item__Form__Item{
+    margin: 6px 0;
+    span{
+        font-size: 14px;
+        color: var(--white);
+        font-weight: 500;
+    }
+}
+.loginSystemWrapper__Item__Form__Input{
+    input{
+        width: 200px;
+        height: 34px;
+        border: none;
+        outline: none;
+        background-color: #412e27;
+        padding: 0 10px;
+        color: var(--white);
+    }
+}
+.loginSystemWrapper__Item__btn{
+    padding: 10px 0;
+    button{
+            padding: 4px;
+            border: none;
+            outline: none;
+            border-radius: 2px;
+            &:hover{
+                background-color: #dddddd;
+            }
+    }
+}

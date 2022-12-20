@@ -1,0 +1,140 @@
+.wrapperResult{
+    position: absolute;
+    left: 100px;
+    top: 80%;
+    background-color: var(--white);
+    width: 700px;
+    border-radius: 6px;
+    z-index: 100;
+    height: auto;
+    overflow: hidden;
+    animation: offHide linear 0.4s;
+    height: 400px;
+    overflow-y: scroll;
+    @keyframes offHide{
+        from:{
+            opacity: 0;
+        }
+        to:{
+            opacity: 1;
+        }
+    }
+}
+.containerResult{
+    margin: 20px 20px;
+    
+}
+.heading{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    span{
+        font-size: 18px;
+        font-size: 600;
+    }
+    .cleanHistory{
+        font-size: 20px;
+        color: var(--btn);
+        cursor: pointer;
+    }
+}
+.listResult{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    span{
+        font-size: 14px;
+        color: #666;
+        margin-right: 20px;
+        background-color: rgb(204, 204, 204, 0.4);
+        padding: 6px;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+}
+.Place{
+    display: flex;
+    justify-content: space-between;
+  .domesticHot{
+      width: calc(100% / 2);
+      background-image: url(https://res.klook.com/image/upload/v1639474405/osl4fpo0fblk5tgsgfmd.png);
+      background-repeat: no-repeat;
+      background-position: cover;
+      border-radius: 6px;
+      margin-top: 20px;
+      margin-right: 14px;
+      padding: 0 10px;
+    .headingOne{
+        margin: 10px 0;
+        span{
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+  }
+}
+.domesticListItem{
+    display: flex;
+    cursor: pointer;
+    margin-top: 14px;
+}
+.placeName{
+    span{
+        font-size: 12px;
+        font-weight: 600;
+    }
+}
+.priceTour{
+    span{
+        font-size: 12px;
+        color: var(--btn);
+    }
+}
+.domesticListItem__Image{
+    margin-right: 10px;
+    img{
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 6px;
+    }
+}
+.ContainerListTourSearch{
+    padding: 40px 20px;
+}
+.ListTourSearch{
+    display: flex;
+    cursor: pointer;
+    .ListTourSearch__Image{
+        width: 40px;
+        height: 40px;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+    }
+    .nameTourSearch{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 10px;
+        width: 100%;
+        transition: 0.2s;
+        span + span{
+            font-size: 12px;
+            color: rgba(51, 51, 51, 0.8);
+        }
+    }
+    &:hover{
+        background-color: rgba(204, 204, 204, 0.2);
+    }
+}
+.xmarkCLose{
+    background-color: var(--white);
+    color: var(--btn);
+    font-size: 30px;
+    margin-left: 40px;
+}
