@@ -2,13 +2,23 @@ import Header from '../../Component/DefaultLayout/Header';
 import styles from './Login.module.scss';
 import classNames from 'classnames/bind';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { sendEmailVerification, signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../FireBase/config';
 import { authGG, providerGG, signInGG } from '../../FireBase/googleConfigs';
-const cx = classNames.bind(styles);
+import { handleLogin } from '../../handleEvent/handleEvent';
+import { ToastContainer } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 export const context = createContext();
+const cx = classNames.bind(styles);
 function Login() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [requestLogin, setRequestLogin] = useState({
+        email: '',
+        password: '',
+    });
     // Xử Lý sự kiện Login Fb
     const handleLoginFB = () => {
         signInWithPopup(auth, provider);
@@ -20,6 +30,7 @@ function Login() {
         sendEmailVerification(user);
         console.log(user);
     };
+    console.log(requestLogin);
     return (
         <>
             <Header />
@@ -32,14 +43,41 @@ function Login() {
                         <div className={cx('formLogin__Item')}>
                             <div className={cx('formLogin__Item__Heading')}>
                                 <span>Email</span>
-                                <input type={'text'} placeholder={'Nhập Email...'} />
+                                <input
+                                    type={'text'}
+                                    placeholder={'Nhập Email...'}
+                                    value={requestLogin.email}
+                                    onChange={(event) => {
+                                        setRequestLogin({
+                                            ...requestLogin,
+                                            email: event.target.value,
+                                        });
+                                    }}
+                                />
                             </div>
                             <div className={cx('formLogin__Item__Heading')}>
                                 <span>Password</span>
-                                <input type={'password'} placeholder={'Nhập Password...'} />
+                                <input
+                                    type={'password'}
+                                    placeholder={'Nhập Password...'}
+                                    value={requestLogin.password}
+                                    onChange={(event) => {
+                                        setRequestLogin({
+                                            ...requestLogin,
+                                            password: event.target.value,
+                                        });
+                                    }}
+                                />
                             </div>
                             <div className={cx('formLogin__Item__btn')}>
-                                <button>Đăng Nhập</button>
+                                <button
+                                    onClick={(event) => {
+                                        event.preventDefault();
+                                        handleLogin(requestLogin, dispatch, navigate);
+                                    }}
+                                >
+                                    Đăng Nhập
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -55,6 +93,7 @@ function Login() {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </>
     );
 }

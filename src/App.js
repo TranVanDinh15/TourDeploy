@@ -9,20 +9,8 @@ import DefaultLayout from './Component/DefaultLayout';
 import AuthProvider from './AuthProvider/AuthProvider';
 import Addtours from './Component/AddTours/Addtour';
 import AllTours from './Component/AllTour/AllTour';
-import DescriptionTour from './Page/descriptionTour/descriptionTour';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
-import InforClient from './Page/InforClient/inforClient';
-import Paypal from './Component/Paypal/Paypal';
 import LoginSystem from './Page/system/loginSystem/loginSystem';
 import UserSystem from './Page/system/userSystem/userSystem';
-const sign = require('jwt-encode');
-const secret = 'dinhpro153';
-const data = {
-    email: 'vandinh410807@gmail.com',
-    password: '123456',
-};
-const jwt = sign(data, secret);
-console.log(jwt);
 // import jwt_decode from 'jwt-decode';
 
 // var token =
@@ -41,8 +29,6 @@ function App() {
                     <Route path="/loading" element={<Loading />} />
                     <Route path="/addTour" element={<Addtours />} />
                     <Route path="/AllTour" element={<AllTours />} />
-                    <Route path="/descriptionTour" element={<DescriptionTour />} />
-                    <Route path="/informationClient" element={<InforClient />} />
                     <Route path="/System/loginSystem" element={<LoginSystem />} />
                     <Route path="/System/userSystem" element={<UserSystem />} />
                 </Routes>
