@@ -8,6 +8,15 @@ export const toolArray = [
         backGroundBtn: 'green',
     },
 ];
+export const toolAroadTour = [
+    {
+        id: 1,
+        icon: <FontAwesomeIcon icon={faCirclePlus} />,
+        name: 'Thêm Tour nước ngoài',
+        backGroundBtn: 'green',
+    },
+];
+
 export const navBarArray = [
     {
         name: 'User',
@@ -17,5 +26,29 @@ export const navBarArray = [
     },
     {
         name: 'Đang Hoạt Động',
+    },
+];
+export const navBarAbroadTour = [
+    {
+        name: 'Tour hiện tại',
+    },
+];
+export const toolTour = [
+    {
+        id: 1,
+        icon: <FontAwesomeIcon icon={faCirclePlus} />,
+        name: 'Thêm Tour',
+        backGroundBtn: 'green',
+    },
+];
+export const arrayNavbarTour = [
+    {
+        name: 'Tour Du Lịch',
+    },
+    {
+        name: 'Tour trong nước',
+    },
+    {
+        name: 'Tour nước ngoài',
     },
 ];

@@ -5,7 +5,7 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faAngleDown, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../../../Component/DefaultLayout/Header/Logo';
 const cx = classNames.bind(styles);
-function HeaderSystem() {
+function HeaderSystem({ title }) {
     return (
         <div className={cx('HeaderSystemWrapper')}>
             <div className={cx('HeaderSystemWrapper__one')}>
@@ -24,10 +24,12 @@ function HeaderSystem() {
             <div className={cx('HeaderSystemWrapper__two')}>
                 <div className={cx('HeaderSystemWrapper__one__List__Item')}>
                     <div>
-                        <FontAwesomeIcon icon={faUserGroup} />
+                        {/* <FontAwesomeIcon icon={faUserGroup} />
+                         */}
+                        {title ? title.icon : ''}
                     </div>
                     <div className={cx('HeaderSystemWrapper__one__List__Item__Heading')}>
-                        <span>Người Dùng</span>
+                        <span>{title ? title.name : ''}</span>
                     </div>
                 </div>
                 <div className={cx('HeaderSystemWrapper__two__Logo')}>

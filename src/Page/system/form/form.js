@@ -1,9 +1,10 @@
 import styles from './form.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { handleCreateTour, handleCreatTour, handleGetAllAroadTour } from '../../../handleEvent/handleEvent';
 const cx = classNames.bind(styles);
 // tentour: DataTypes.STRING,
 // songayditour: DataTypes.INTEGER,
@@ -17,7 +18,7 @@ const cx = classNames.bind(styles);
 // maloaitour: DataTypes.STRING,
 // maloaimien: DataTypes.STRING,
 // matournuocngoai: DataTypes.STRING,
-function Form({ FormArray }) {
+function FormCreateTour({ FormArray }) {
     const convertBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const newFileReader = new FileReader();
@@ -35,21 +36,22 @@ function Form({ FormArray }) {
         songayditour: '',
         backGround: '',
         hinhanh1: '',
-        hinhanh2: '',
-        hinhanh3: '',
-        hinhanh4: '',
         video: '',
         gioithieutour: '',
         maloaitour: '',
         maloaimien: '',
         matournuocngoai: '',
     });
+    const [allAbroadTour, setAllAbroadTour] = useState('');
+    useEffect(() => {
+        handleGetAllAroadTour(setAllAbroadTour);
+    }, []);
     console.log(requestCreate);
     return (
         <div className={cx('FormContainer')}>
             <div className={cx('FormContainer__Item')}>
-                <FontAwesomeIcon icon={faUser} />
-                Chi tiết tài khoản
+                <FontAwesomeIcon icon={faGlobe} />
+                Chi tiết Tour
             </div>
             <div className={cx('FormContainer__FormItem')}>
                 <div className={cx('FormContainer__FormItem__container')}>
@@ -57,7 +59,16 @@ function Form({ FormArray }) {
                         <span>Tên Tour</span>
                     </div>
                     <div className={cx('FormContainer__FormItem__input')}>
-                        <input type={'text'} />
+                        <input
+                            type={'text'}
+                            value={requestCreate.tentour}
+                            onChange={(event) => {
+                                setRequestCreate({
+                                    ...requestCreate,
+                                    tentour: event.target.value,
+                                });
+                            }}
+                        />
                     </div>
                 </div>
                 <div className={cx('FormContainer__FormItem__container')}>
@@ -65,7 +76,16 @@ function Form({ FormArray }) {
                         <span>Số ngày đi Tour</span>
                     </div>
                     <div className={cx('FormContainer__FormItem__input')}>
-                        <input type={'text'} />
+                        <input
+                            type={'text'}
+                            value={requestCreate.songayditour}
+                            onChange={(event) => {
+                                setRequestCreate({
+                                    ...requestCreate,
+                                    songayditour: event.target.value,
+                                });
+                            }}
+                        />
                     </div>
                 </div>
                 <div className={cx('FormContainer__FormItem__container')}>
@@ -73,7 +93,16 @@ function Form({ FormArray }) {
                         <span>Video mô tả</span>
                     </div>
                     <div className={cx('FormContainer__FormItem__input')}>
-                        <input type={'text'} />
+                        <input
+                            type={'text'}
+                            value={requestCreate.video}
+                            onChange={(event) => {
+                                setRequestCreate({
+                                    ...requestCreate,
+                                    video: event.target.value,
+                                });
+                            }}
+                        />
                     </div>
                 </div>
                 <div className={cx('FormContainer__FormItem__container')}>
@@ -81,10 +110,69 @@ function Form({ FormArray }) {
                         <span>Giới thiệu Tour</span>
                     </div>
                     <div className={cx('FormContainer__FormItem__input')}>
-                        <input type={'text'} />
+                        <input
+                            type={'text'}
+                            value={requestCreate.gioithieutour}
+                            onChange={(event) => {
+                                setRequestCreate({
+                                    ...requestCreate,
+                                    gioithieutour: event.target.value,
+                                });
+                            }}
+                        />
                     </div>
                 </div>
-
+                <div className={cx('FormContainer__FormItem__container')}>
+                    <div className={cx('FormContainer__FormItem__field')}>
+                        <span>Mã Tour Nước Ngoài</span>
+                    </div>
+                    <div className={cx('FormContainer__FormItem__input')}>
+                        <input
+                            type={'text'}
+                            value={requestCreate.matournuocngoai}
+                            onChange={(event) => {
+                                setRequestCreate({
+                                    ...requestCreate,
+                                    matournuocngoai: event.target.value,
+                                });
+                            }}
+                        />
+                    </div>
+                </div>
+                <div className={cx('FormContainer__FormItem__container')}>
+                    <div className={cx('FormContainer__FormItem__field')}>
+                        <span>Mã Loại Tour</span>
+                    </div>
+                    <div className={cx('FormContainer__FormItem__input')}>
+                        <input
+                            type={'text'}
+                            value={requestCreate.maloaitour}
+                            onChange={(event) => {
+                                setRequestCreate({
+                                    ...requestCreate,
+                                    maloaitour: event.target.value,
+                                });
+                            }}
+                        />
+                    </div>
+                </div>
+                <div className={cx('FormContainer__FormItem__container')}>
+                    <div className={cx('FormContainer__FormItem__field')}>
+                        <span>Mã loại miền</span>
+                    </div>
+                    <div className={cx('FormContainer__FormItem__input')}>
+                        <input
+                            type={'text'}
+                            value={requestCreate.maloaimien}
+                            onChange={(event) => {
+                                setRequestCreate({
+                                    ...requestCreate,
+                                    maloaimien: event.target.value,
+                                });
+                            }}
+                        />
+                    </div>
+                </div>
                 <div className={cx('FormContainer__FormItem__container')}>
                     <div className={cx('FormContainer__FormItem__field')}>
                         <span>BackGround</span>
@@ -115,6 +203,7 @@ function Form({ FormArray }) {
                         )}
                     </div>
                 </div>
+
                 <div className={cx('FormContainer__FormItem__container')}>
                     <div className={cx('FormContainer__FormItem__field')}>
                         <span>Ảnh Mô Tả 1</span>
@@ -145,98 +234,18 @@ function Form({ FormArray }) {
                         )}
                     </div>
                 </div>
-                <div className={cx('FormContainer__FormItem__container')}>
-                    <div className={cx('FormContainer__FormItem__field')}>
-                        <span>Ảnh Mô Tả 2</span>
-                    </div>
-
-                    <div className={cx('FormContainer__FormItem__file')}>
-                        <input
-                            type={'file'}
-                            onChange={async (event) => {
-                                const file = event.target.files[0];
-                                const base64 = await convertBase64(file);
-                                console.log(base64);
-                                setRequestCreate({
-                                    ...requestCreate,
-                                    hinhanh2: base64,
-                                });
-                            }}
-                        />
-                        <div className={cx('FormContainer__FormItem__icon')}>
-                            <FontAwesomeIcon icon={faImage} />
-                        </div>
-                        {requestCreate.hinhanh2 ? (
-                            <div className={cx('FormContainer__FormItem__boxImage')}>
-                                <img src={requestCreate.hinhanh2} />
-                            </div>
-                        ) : (
-                            ''
-                        )}
-                    </div>
-                </div>
-                <div className={cx('FormContainer__FormItem__container')}>
-                    <div className={cx('FormContainer__FormItem__field')}>
-                        <span>Ảnh Mô Tả 3</span>
-                    </div>
-
-                    <div className={cx('FormContainer__FormItem__file')}>
-                        <input
-                            type={'file'}
-                            onChange={async (event) => {
-                                const file = event.target.files[0];
-                                const base64 = await convertBase64(file);
-                                console.log(base64);
-                                setRequestCreate({
-                                    ...requestCreate,
-                                    hinhanh3: base64,
-                                });
-                            }}
-                        />
-                        <div className={cx('FormContainer__FormItem__icon')}>
-                            <FontAwesomeIcon icon={faImage} />
-                        </div>
-                        {requestCreate.hinhanh3 ? (
-                            <div className={cx('FormContainer__FormItem__boxImage')}>
-                                <img src={requestCreate.hinhanh3} />
-                            </div>
-                        ) : (
-                            ''
-                        )}
-                    </div>
-                </div>
-                <div className={cx('FormContainer__FormItem__container')}>
-                    <div className={cx('FormContainer__FormItem__field')}>
-                        <span>Ảnh Mô Tả 4</span>
-                    </div>
-
-                    <div className={cx('FormContainer__FormItem__file')}>
-                        <input
-                            type={'file'}
-                            onChange={async (event) => {
-                                const file = event.target.files[0];
-                                const base64 = await convertBase64(file);
-                                console.log(base64);
-                                setRequestCreate({
-                                    ...requestCreate,
-                                    hinhanh4: base64,
-                                });
-                            }}
-                        />
-                        <div className={cx('FormContainer__FormItem__icon')}>
-                            <FontAwesomeIcon icon={faImage} />
-                        </div>
-                        {requestCreate.hinhanh4 ? (
-                            <div className={cx('FormContainer__FormItem__boxImage')}>
-                                <img src={requestCreate.hinhanh4} />
-                            </div>
-                        ) : (
-                            ''
-                        )}
-                    </div>
-                </div>
+            </div>
+            <div className={cx('FormContainer__FormItem__container__btn')}>
+                <button
+                    onClick={(event) => {
+                        event.preventDefault();
+                        handleCreateTour(requestCreate);
+                    }}
+                >
+                    Tạo
+                </button>
             </div>
         </div>
     );
 }
-export default Form;
+export default FormCreateTour;

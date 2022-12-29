@@ -5,7 +5,7 @@ import FormCreateAccount from '../form/userAccountForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
-function NavBar({ navBarArray }) {
+function NavBar({ navBarArray, FormCreateAccount }) {
     return (
         <div className={cx('NavBarContainer')}>
             <div className={cx('NavBarWrapper')}>
@@ -23,7 +23,7 @@ function NavBar({ navBarArray }) {
                     </ul>
                 </div>
             </div>
-            <Properties children={<FormCreateAccount />} />
+            <Properties children={FormCreateAccount} />
         </div>
     );
 }

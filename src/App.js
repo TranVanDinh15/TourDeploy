@@ -11,6 +11,8 @@ import Addtours from './Component/AddTours/Addtour';
 import AllTours from './Component/AllTour/AllTour';
 import LoginSystem from './Page/system/loginSystem/loginSystem';
 import UserSystem from './Page/system/userSystem/userSystem';
+import AbroadTour from './Page/system/abroadTour/abroadTour';
+import TourSystem from './Page/system/tourSystem/tourSystem';
 // import jwt_decode from 'jwt-decode';
 
 // var token =
@@ -31,8 +33,11 @@ function App() {
                     <Route path="/AllTour" element={<AllTours />} />
                     <Route path="/System/loginSystem" element={<LoginSystem />} />
                     <Route path="/System/userSystem" element={<UserSystem />} />
+                    <Route path="/System/AbroadTourSystem" element={<AbroadTour />} />
+                    <Route path="/System/tourSystem" element={<TourSystem />} />
                 </Routes>
             </AuthProvider>
+            
         </Router>
     );
 }

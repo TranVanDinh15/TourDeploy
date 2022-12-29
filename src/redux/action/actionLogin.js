@@ -4,4 +4,10 @@ const actionLoginSuccess = (payload) => {
         payload: payload,
     };
 };
-export { actionLoginSuccess };
+const actionLogOutSuccess = (payload) => {
+    return {
+        type: 'LOGOUT_SUCCESS',
+        payload: payload,
+    };
+};
+export { actionLoginSuccess, actionLogOutSuccess };
