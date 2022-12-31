@@ -3,19 +3,22 @@ import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { handleGetAllTour } from '../../../handleEvent/handleEvent';
+import { handleGetAbroadTour, handleGetAllTour } from '../../../handleEvent/handleEvent';
 import { FaArrowRight } from 'react-icons/fa';
 import { Buffer } from 'buffer';
+import { ToastContainer } from 'react-toastify';
 const cx = classNames.bind(styles);
 function ListTours({ limit }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [allTour, setAllTour] = useState('');
+    let tourAbroad = '';
     // Get Api Tour
     useEffect(() => {
         // getTours(url, setListTour, limit);
         handleGetAllTour(setAllTour, 1);
     }, []);
+
     const ListTourWrapper = useRef();
 
     console.log(allTour);
@@ -32,12 +35,26 @@ function ListTours({ limit }) {
                                           <img src={imageBuffer} alt="" />
                                       </div>
                                       <div className={cx('propertiesTours')}>
-                                          <div className={cx('price')}>
-                                              Từ <span>500.000 đ</span>
-                                          </div>
+                                          <div className={cx('price')}>{res.tentour}</div>
                                           <div className={cx('description')}>
-                                              <span>{res.name}</span>
-                                              <span>$88.00 cho một người</span>
+                                              <span>Hành trình: </span>
+                                              <span>{res.matournuocngoai}</span>
+                                          </div>
+                                          <div className={cx('date')}>
+                                              <div className={cx('date__title')}>
+                                                  <span>Thời gian: </span>
+                                              </div>
+                                              <div className={cx('date__Api')}>
+                                                  <span>{res.songayditour}</span>
+                                              </div>
+                                          </div>
+                                          <div className={cx('PriceTour')}>
+                                              <span>
+                                                  {res.chiPhi.toLocaleString('vi-VN', {
+                                                      style: 'currency',
+                                                      currency: 'VND',
+                                                  })}
+                                              </span>
                                           </div>
                                           <div className={cx('footer')}>
                                               <div className={cx('btnBooking')}>
@@ -53,6 +70,7 @@ function ListTours({ limit }) {
                         : ''}
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }

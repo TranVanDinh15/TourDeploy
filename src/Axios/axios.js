@@ -27,6 +27,13 @@ export const getAllAroadTour = () => {
         console.log(error);
     }
 };
+export const getAbroadTour = (matournuocngoai) => {
+    try {
+        return axios.get(`http://localhost:9999/api/getAbroadTour?matournuocngoai=${matournuocngoai}`);
+    } catch (error) {
+        console.log(error);
+    }
+};
 export const createTour = (body) => {
     try {
         return axios.post('http://localhost:9999/api/createTour', body);

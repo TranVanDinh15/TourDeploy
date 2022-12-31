@@ -1,6 +1,14 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createAroadTour, createTour, getAllAroadTour, getAllTour, loginUser, logoutUser } from '../Axios/axios';
+import {
+    createAroadTour,
+    createTour,
+    getAbroadTour,
+    getAllAroadTour,
+    getAllTour,
+    loginUser,
+    logoutUser,
+} from '../Axios/axios';
 import jwt_decode from 'jwt-decode';
 import { actionLoginSuccess, actionLogOutSuccess } from '../redux/action/actionLogin';
 import { async } from '@firebase/util';
@@ -115,9 +123,25 @@ export const handleGetAllAroadTour = async (setState) => {
         }
     } catch (error) {}
 };
+export const handleGetAbroadTour = async (matournuocngoai) => {
+    try {
+        const response = await getAbroadTour(matournuocngoai);
+        if (response) {
+            return response.data.data.tencactournuocngoai;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
 export const handleCreateTour = async (body) => {
     const response = await createTour(body);
-    console.log(response);
+    if (response) {
+        if (response.data.errCode == 0) {
+            toast.success(response.data.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+        }
+    }
 };
 export const handleGetAllTour = async (setState, page) => {
     try {

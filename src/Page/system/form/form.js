@@ -5,6 +5,7 @@ import { faGlobe, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { useEffect, useState } from 'react';
 import { handleCreateTour, handleCreatTour, handleGetAllAroadTour } from '../../../handleEvent/handleEvent';
+import { ToastContainer } from 'react-toastify';
 const cx = classNames.bind(styles);
 // tentour: DataTypes.STRING,
 // songayditour: DataTypes.INTEGER,
@@ -36,6 +37,7 @@ function FormCreateTour({ FormArray }) {
         songayditour: '',
         backGround: '',
         hinhanh1: '',
+        chiPhi: '',
         video: '',
         gioithieutour: '',
         maloaitour: '',
@@ -100,6 +102,23 @@ function FormCreateTour({ FormArray }) {
                                 setRequestCreate({
                                     ...requestCreate,
                                     video: event.target.value,
+                                });
+                            }}
+                        />
+                    </div>
+                </div>
+                <div className={cx('FormContainer__FormItem__container')}>
+                    <div className={cx('FormContainer__FormItem__field')}>
+                        <span>Chi Phí</span>
+                    </div>
+                    <div className={cx('FormContainer__FormItem__input')}>
+                        <input
+                            type={'text'}
+                            value={requestCreate.chiPhi}
+                            onChange={(event) => {
+                                setRequestCreate({
+                                    ...requestCreate,
+                                    chiPhi: event.target.value,
                                 });
                             }}
                         />
@@ -245,6 +264,7 @@ function FormCreateTour({ FormArray }) {
                     Tạo
                 </button>
             </div>
+            <ToastContainer />
         </div>
     );
 }
