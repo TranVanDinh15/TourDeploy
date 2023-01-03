@@ -40,6 +40,12 @@ export const toolTour = [
         name: 'Thêm Tour',
         backGroundBtn: 'green',
     },
+    {
+        id: 2,
+        icon: <FontAwesomeIcon icon={faCirclePlus} />,
+        name: 'Chi Tiết Tour',
+        backGroundBtn: 'green',
+    },
 ];
 export const arrayNavbarTour = [
     {

@@ -48,3 +48,10 @@ export const getAllTour = (page) => {
         console.log(error);
     }
 };
+export const createDescription = (body) => {
+    try {
+        return axios.post(`http://localhost:9999/api/createSchedule?maloaitour=${body.maloaitour}`, body);
+    } catch (error) {
+        console.log(error);
+    }
+};

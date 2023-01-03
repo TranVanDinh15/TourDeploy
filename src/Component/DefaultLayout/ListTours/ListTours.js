@@ -70,7 +70,6 @@ function ListTours({ limit }) {
                         : ''}
                 </div>
             </div>
-            <ToastContainer />
         </div>
     );
 }

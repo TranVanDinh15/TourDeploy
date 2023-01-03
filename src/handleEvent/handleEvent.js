@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
     createAroadTour,
+    createDescription,
     createTour,
     getAbroadTour,
     getAllAroadTour,
@@ -107,11 +108,12 @@ export const handleCreateAboadSytem = async (body) => {
         console.log(error);
     }
 };
-export const handleClickTool = (isFormCreate, setIsFormCreate) => {
+export const handleClickTool = (isFormCreate, setIsFormCreate, setIsDescriptionTour) => {
     if (isFormCreate) {
         setIsFormCreate(false);
     } else {
         setIsFormCreate(true);
+        setIsDescriptionTour(false);
     }
 };
 export const handleGetAllAroadTour = async (setState) => {
@@ -148,6 +150,25 @@ export const handleGetAllTour = async (setState, page) => {
         const response = await getAllTour(page);
         if (response) {
             setState(response);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const handleCreateDescription = async (data) => {
+    try {
+        const response = await createDescription(data);
+        if (response) {
+            if (response.data.errCode == 0) {
+                toast.success(response.data.message, {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+            }
+            if (response.data.errCode == 1) {
+                toast.error(response.data.message, {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+            }
         }
     } catch (error) {
         console.log(error);

@@ -37,7 +37,6 @@ function App() {
                     <Route path="/System/tourSystem" element={<TourSystem />} />
                 </Routes>
             </AuthProvider>
-            
         </Router>
     );
 }

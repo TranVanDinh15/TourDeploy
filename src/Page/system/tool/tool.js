@@ -2,7 +2,7 @@ import styles from './tool.module.scss';
 import classNames from 'classnames/bind';
 import { handleClickTool } from '../../../handleEvent/handleEvent';
 const cx = classNames.bind(styles);
-function Tool({ arrayData, isFormCreate, setIsFormCreate }) {
+function Tool({ arrayData, isFormCreate, setIsFormCreate, isFormDescription, setIsFormDescription }) {
     return (
         <div className={cx('ToolWrapper')}>
             <ul className={cx('ToolWrapper__List')}>
@@ -15,7 +15,15 @@ function Tool({ arrayData, isFormCreate, setIsFormCreate }) {
                                       onClick={(event) => {
                                           event.preventDefault();
                                           if (data.id == 1) {
-                                              handleClickTool(isFormCreate, setIsFormCreate);
+                                              handleClickTool(isFormCreate, setIsFormCreate, setIsFormDescription);
+                                          }
+                                          if (data.id == 2) {
+                                              if (isFormDescription) {
+                                                  setIsFormDescription(false);
+                                              } else {
+                                                  setIsFormDescription(true);
+                                                  setIsFormCreate(false);
+                                              }
                                           }
                                       }}
                                   >
