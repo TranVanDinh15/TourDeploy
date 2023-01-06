@@ -13,6 +13,7 @@ import LoginSystem from './Page/system/loginSystem/loginSystem';
 import UserSystem from './Page/system/userSystem/userSystem';
 import AbroadTour from './Page/system/abroadTour/abroadTour';
 import TourSystem from './Page/system/tourSystem/tourSystem';
+import DescriptionTour from './Page/descriptionTour/descriptionTour';
 // import jwt_decode from 'jwt-decode';
 
 // var token =
@@ -21,6 +22,7 @@ import TourSystem from './Page/system/tourSystem/tourSystem';
 
 // console.log(decoded);
 function App() {
+    // console.log(this.props.match.params.id);
     return (
         <Router>
             <AuthProvider>
@@ -31,6 +33,7 @@ function App() {
                     <Route path="/loading" element={<Loading />} />
                     <Route path="/addTour" element={<Addtours />} />
                     <Route path="/AllTour" element={<AllTours />} />
+                    <Route path="/DescriptionTour/:id"  element={<DescriptionTour />} />
                     <Route path="/System/loginSystem" element={<LoginSystem />} />
                     <Route path="/System/userSystem" element={<UserSystem />} />
                     <Route path="/System/AbroadTourSystem" element={<AbroadTour />} />
