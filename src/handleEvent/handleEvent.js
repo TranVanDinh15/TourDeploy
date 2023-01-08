@@ -6,7 +6,9 @@ import {
     createTour,
     getAbroadTour,
     getAllAroadTour,
+    getAllScheduleTour,
     getAllTour,
+    getDetailTour,
     loginUser,
     logoutUser,
 } from '../Axios/axios';
@@ -169,6 +171,26 @@ export const handleCreateDescription = async (data) => {
                     position: toast.POSITION.TOP_RIGHT,
                 });
             }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const handleGetDetailTour = async (maloaimien, setState) => {
+    try {
+        const response = await getDetailTour(maloaimien);
+        if (response) {
+            setState(response);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const handleGetAllScheduleTour = async (maloaitour, setState) => {
+    try {
+        const response = await getAllScheduleTour(maloaitour);
+        if (response) {
+            setState(response.data);
         }
     } catch (error) {
         console.log(error);

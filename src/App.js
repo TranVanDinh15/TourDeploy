@@ -33,7 +33,7 @@ function App() {
                     <Route path="/loading" element={<Loading />} />
                     <Route path="/addTour" element={<Addtours />} />
                     <Route path="/AllTour" element={<AllTours />} />
-                    <Route path="/DescriptionTour/:id"  element={<DescriptionTour />} />
+                    <Route path="/DescriptionTour/:id/:maloaitour" element={<DescriptionTour />} />
                     <Route path="/System/loginSystem" element={<LoginSystem />} />
                     <Route path="/System/userSystem" element={<UserSystem />} />
                     <Route path="/System/AbroadTourSystem" element={<AbroadTour />} />

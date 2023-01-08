@@ -3,8 +3,11 @@ import classNames from 'classnames/bind';
 import Header from '../../Component/DefaultLayout/Header';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar, faCircleInfo, faNoteSticky, faPaperclip, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faCircleInfo, faNoteSticky, faPaperclip, faStar, faTv } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarCheck, faCircleDot } from '@fortawesome/free-regular-svg-icons';
+import { useEffect, useRef, useState } from 'react';
+import { handleGetAllScheduleTour, handleGetDetailTour } from '../../handleEvent/handleEvent';
+import { Buffer } from 'buffer';
 const cx = classNames.bind(styles);
 function DescriptionTour() {
     const params = useParams();
@@ -36,6 +39,26 @@ function DescriptionTour() {
             name: 'Ngày khởi hành khác',
         },
     ];
+    const [detailTour, setDetailTour] = useState('');
+    const [allScheduleTour, setAllScheduleTour] = useState('');
+    const [offset, setOffset] = useState(0);
+    const [isSchedule, setIsSchedule] = useState(false);
+    const [isVideo, setIsVideo] = useState(false);
+
+    useEffect(() => {
+        if (params) {
+            handleGetDetailTour(params.id, setDetailTour);
+            handleGetAllScheduleTour(params.maloaitour, setAllScheduleTour);
+        }
+        const onScroll = () => setOffset(window.pageYOffset);
+        // clean up code
+        window.removeEventListener('scroll', onScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+    console.log(detailTour);
+    console.log(allScheduleTour);
+    console.log(offset);
     return (
         <div className={cx('descriptionTourContainer')}>
             <Header />
@@ -46,7 +69,7 @@ function DescriptionTour() {
                     <span>Du Lịch Hành Hương Israel 8N7Đ Theo Bước Chân Giêsu Từ Sài Gòn 2023 </span>
                 </div>
                 <div className={cx('descriptionTourContainer__Item__Heading')}>
-                    <span>Du lịch Hành Hương Israel 8N7Đ theo bước chân Giêsu từ Sài Gòn 2023</span>
+                    <span>{detailTour ? detailTour.data.tour.tentour : ''}</span>
                 </div>
                 <div className={cx('descriptionTourContainer__Item__evaluate')}>
                     <span>
@@ -59,7 +82,13 @@ function DescriptionTour() {
                 <div className={cx('descriptionTourContainer__Item__content')}>
                     <div className={cx('descriptionTourContainer__Item__content__Item')}>
                         <div className={cx('descriptionTourContainer__Item__content__Item__Image')}>
-                            <img src="https://dulichviet.com.vn/images/bandidau/images/CH%C3%82U%20%C3%81/Israel/du-lich-israel-noi-dat-thanh-du-lich-viet.jpg" />
+                            <img
+                                src={
+                                    detailTour
+                                        ? new Buffer(detailTour.data.tour.backGround, 'base64').toString('binary')
+                                        : ''
+                                }
+                            />
                         </div>
                         <div className={cx('descriptionTourContainer__Item__content__Item__HightLight')}>
                             <div className={cx('HightLightTour__Heading')}>
@@ -69,11 +98,11 @@ function DescriptionTour() {
                             <div className={cx('HightLightTour__InforTour')}>
                                 <div className={cx('HightLightTour__Item')}>
                                     <span>Hành trình</span>
-                                    <span>Nazarêth - Bêthlehem - Giêrusalem</span>
+                                    <span>{detailTour ? detailTour.data.tour.matournuocngoai : ''}</span>
                                 </div>
                                 <div className={cx('HightLightTour__Item')}>
                                     <span>Lịch trình</span>
-                                    <span>8 ngày 7 đêm</span>
+                                    <span>{detailTour ? detailTour.data.tour.songayditour : ''}</span>
                                 </div>
                                 <div className={cx('HightLightTour__Item')}>
                                     <span>Khởi hành</span>
@@ -81,100 +110,95 @@ function DescriptionTour() {
                                 </div>
                             </div>
                             <div className={cx('HightLightTour__Description')}>
-                                <p>
-                                    Du lịch Hành Hương - Du lịch Hành Hương Israel 8N7Đ theo bước chân Giêsu từ Sài Gòn
-                                    2023 "Theo Chúa Giêsu thật tốt dường nào, đi với Chúa Giêsu thật tốt biết bao, sứ
-                                    điệp của Chúa Giêsu là thiện hảo, đúng là phải thoát ra khỏi chính mình, từ khắp
-                                    cùng bờ cõi trái đất để mang Chúa Giêsu đến cho những người khác! "Đức Giaó Hoàng
-                                    Phanxicô. Trong cuộc đời mỗi người Kitô hữu, ai cũng ao ước được đặt chân đến Đất
-                                    Thánh, miền đất mà Chúa Giêsu đã sinh ra, lớn lên, rao giảng Tin Mừng rồi Tử nạn và
-                                    Phục Sinh. Một Đức Giêsu lịch sử, đã làm người, sống tại Israel - cầu nối của 3 lục
-                                    địa Á, Âu, Phi. Đến đây để được sống, được tận hưởng bầu khí linh thiêng của hàng
-                                    trăm triệu tín đồ trên khắp thế giới, được đặt tay lên tảng đá nơi Đức Mẹ quỳ gối
-                                    đáp lời “Xin vâng”, quỳ cầu nguyện tại tảng đá mà Chúa Giêsu đã quỳ cầu nguyện trước
-                                    cuộc khổ nạn, hôn kính tảng đá nơi đặt xác Chúa Giêsu hạ xuống từ thập giá…đi trên
-                                    con đường lịch sử như Phúc Âm kể, vẫn thấy đâu đây hình bóng Chúa thấp thoáng trên
-                                    mọi nẻo đường… còn bao nhiêu địa danh linh thiêng nữa, gắn với cuộc đời Đấng Cứu
-                                    Thế, thật đáng yêu đáng kính, hấp dẫn mời gọi.
-                                </p>
+                                <p>{detailTour ? detailTour.data.tour.gioithieutour : ''}</p>
                             </div>
                         </div>
-                        <div className={cx('HightLightTour__Heading')}>
+                        <div
+                            className={cx('HightLightTour__Heading')}
+                            onClick={(event) => {
+                                if (isSchedule) {
+                                    setIsSchedule(false);
+                                } else {
+                                    setIsSchedule(true);
+                                }
+                            }}
+                        >
                             <FontAwesomeIcon icon={faCalendar} />
                             <span>Lịch trình</span>
                         </div>
-                        <div className={cx('HightLightTour__dateSchedule')}>
-                            <div className={cx('HightLightTour__dateSchedule__Item')}>
-                                <div className={cx('HightLightTour__dateSchedule__Point')}>
-                                    <FontAwesomeIcon icon={faCircleDot} />
-                                </div>
-                                <div className={cx('HightLightTour__dateSchedule__Heading')}>
-                                    <span>NGÀY 1 | TP.HCM – ISRAEL (Ăn trên máy bay)</span>
-                                </div>
-                            </div>
-                            <div className={cx('HightLightTour__dateSchedule__text')}>
-                                <p>
-                                    19h00 Quý khách tập trung tại Ga Quốc tế sân bay Tân Sơn Nhất, làm thủ tục trên
-                                    chuyến bay của hãng hàng không Turkish Airlines lúc 21h25 để đến thành phố Tel Aviv
-                                    – Israel (quá cảnh tại Istanbul, Thổ Nhĩ Kỳ), Lịch trình chuyến bay: TK 163 T SGNIST
-                                    DK1 2210 0500 TK 784 T ISTTLV DK1 0700 0905 Quý khách ăn uống nghỉ đêm trên máy bay.
-                                </p>
-                            </div>
-                        </div>
-                        <div className={cx('HightLightTour__dateSchedule')}>
-                            <div className={cx('HightLightTour__dateSchedule__Item')}>
-                                <div className={cx('HightLightTour__dateSchedule__Point')}>
-                                    <FontAwesomeIcon icon={faCircleDot} />
-                                </div>
-                                <div className={cx('HightLightTour__dateSchedule__Heading')}>
-                                    <span>NGÀY 1 | TP.HCM – ISRAEL (Ăn trên máy bay)</span>
-                                </div>
-                            </div>
-                            <div className={cx('HightLightTour__dateSchedule__text')}>
-                                <p>
-                                    19h00 Quý khách tập trung tại Ga Quốc tế sân bay Tân Sơn Nhất, làm thủ tục trên
-                                    chuyến bay của hãng hàng không Turkish Airlines lúc 21h25 để đến thành phố Tel Aviv
-                                    – Israel (quá cảnh tại Istanbul, Thổ Nhĩ Kỳ), Lịch trình chuyến bay: TK 163 T SGNIST
-                                    DK1 2210 0500 TK 784 T ISTTLV DK1 0700 0905 Quý khách ăn uống nghỉ đêm trên máy bay.
-                                </p>
-                            </div>
-                        </div>
-                        <div className={cx('HightLightTour__dateSchedule')}>
-                            <div className={cx('HightLightTour__dateSchedule__Item')}>
-                                <div className={cx('HightLightTour__dateSchedule__Point')}>
-                                    <FontAwesomeIcon icon={faCircleDot} />
-                                </div>
-                                <div className={cx('HightLightTour__dateSchedule__Heading')}>
-                                    <span>NGÀY 1 | TP.HCM – ISRAEL (Ăn trên máy bay)</span>
-                                </div>
-                            </div>
-                            <div className={cx('HightLightTour__dateSchedule__text')}>
-                                <p>
-                                    19h00 Quý khách tập trung tại Ga Quốc tế sân bay Tân Sơn Nhất, làm thủ tục trên
-                                    chuyến bay của hãng hàng không Turkish Airlines lúc 21h25 để đến thành phố Tel Aviv
-                                    – Israel (quá cảnh tại Istanbul, Thổ Nhĩ Kỳ), Lịch trình chuyến bay: TK 163 T SGNIST
-                                    DK1 2210 0500 TK 784 T ISTTLV DK1 0700 0905 Quý khách ăn uống nghỉ đêm trên máy bay.
-                                </p>
-                            </div>
-                        </div>
+                        {isSchedule && allScheduleTour && allScheduleTour.errCode == 0
+                            ? allScheduleTour.lichtrinh.map((item, index) => {
+                                  return (
+                                      <div className={cx('HightLightTour__dateSchedule')}>
+                                          <div className={cx('HightLightTour__dateSchedule__Item')}>
+                                              <div className={cx('HightLightTour__dateSchedule__Point')}>
+                                                  <FontAwesomeIcon icon={faCircleDot} />
+                                              </div>
+                                              <div className={cx('HightLightTour__dateSchedule__Heading')}>
+                                                  <span>{item.lichtrinhtheongay}</span>
+                                              </div>
+                                          </div>
+                                          <div className={cx('HightLightTour__dateSchedule__text')}>
+                                              <p>{item.noidung}</p>
+                                          </div>
+                                      </div>
+                                  );
+                              })
+                            : ''}
                         <div className={cx('HightLightTour__Heading')}>
                             <FontAwesomeIcon icon={faPaperclip} />
                             <span>Dịch vụ bao gồm và không bao gồm</span>
+                        </div>
+                        <div className={cx('HightLightTour__Heading')}>
+                            <FontAwesomeIcon icon={faNoteSticky} />
+                            <span>Ghi chú</span>
+                        </div>
+                        <div
+                            className={cx('HightLightTour__Heading')}
+                            onClick={(event) => {
+                                if (isVideo) {
+                                    setIsVideo(false);
+                                } else {
+                                    setIsVideo(true);
+                                }
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faTv} />
+                            <span>Video</span>
+                        </div>
+                        {isVideo ? (
+                            <div className={cx('HightLightTour__Heading__Video')}>
+                                <iframe
+                                    width="100%"
+                                    height="400"
+                                    src={detailTour ? detailTour.data.tour.video : ''}
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen
+                                ></iframe>
+                            </div>
+                        ) : (
+                            ''
+                        )}
+                        <div className={cx('HightLightTour__Heading')}>
+                            <FontAwesomeIcon icon={faCalendarCheck} />
+                            <span>Ngày khởi hành khác</span>
                         </div>
                     </div>
                     <div className={cx('descriptionTourContainer__Item__content__Item')}>
                         <div className={cx('descriptionTourContainer__Item__content__Item__navbar')}>
                             <div className={cx('descriptionTourContainer__Item__content__Item__navbarContainer')}>
                                 <div className={cx('nameTour')}>
-                                    <span>Du lịch Hành Hương Israel 8N7Đ theo bước chân Giêsu từ Sài Gòn 2023</span>
+                                    <span>{detailTour ? detailTour.data.tour.tentour : ''}</span>
                                 </div>
                                 <div className={cx('codeTour')}>
                                     <span>Mã tour:</span>
-                                    <span>16403</span>
+                                    <span>{detailTour ? detailTour.data.tour.maloaitour : ''}</span>
                                 </div>
                                 <div className={cx('codeTour')}>
                                     <span>Thời gian:</span>
-                                    <span>8 ngày 7 đêm</span>
+                                    <span>{detailTour ? detailTour.data.tour.songayditour : ''}</span>
                                 </div>
                                 <div className={cx('codeTour')}>
                                     <span>Khởi hành:</span>
@@ -189,35 +213,46 @@ function DescriptionTour() {
                                     <span>Thành phố Hồ Chí Minh</span>
                                 </div>
                             </div>
-                            <div className={cx('descriptionTourContainer__Item__content__Item__BoxPrice')}>
-                                <div
-                                    className={cx('descriptionTourContainer__Item__content__Item__BoxPrice__pricetour')}
-                                >
-                                    <span>Giá từ:</span>
-                                    <span>49000000</span>
+                            <div className={cx(offset > 565.5 ? 'action' : '')}>
+                                <div className={cx('descriptionTourContainer__Item__content__Item__BoxPrice')}>
+                                    <div
+                                        className={cx(
+                                            'descriptionTourContainer__Item__content__Item__BoxPrice__pricetour',
+                                        )}
+                                    >
+                                        <span>Giá từ:</span>
+                                        <span>
+                                            {detailTour
+                                                ? detailTour.data.tour.chiPhi.toLocaleString('vi-VN', {
+                                                      style: 'currency',
+                                                      currency: 'VND',
+                                                  })
+                                                : ''}
+                                        </span>
+                                    </div>
+                                    <div
+                                        className={cx(
+                                            'descriptionTourContainer__Item__content__Item__BoxPrice__optionDate',
+                                        )}
+                                    >
+                                        <input type={'date'} />
+                                    </div>
+                                    <div className={cx('btn__Contact')}>
+                                        <button>Liên Hệ</button>
+                                    </div>
                                 </div>
-                                <div
-                                    className={cx(
-                                        'descriptionTourContainer__Item__content__Item__BoxPrice__optionDate',
-                                    )}
-                                >
-                                    <input type={'date'} />
-                                </div>
-                                <div className={cx('btn__Contact')}>
-                                    <button>Liên Hệ</button>
-                                </div>
+                                <ul className={cx('descriptionTourContainer__Item__content__Item')}>
+                                    {arrayNecessary.map((item, index) => {
+                                        return (
+                                            <li key={index}>
+                                                {item.icon}
+                                                <span>{item.name}</span>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
                             </div>
                         </div>
-                        <ul className={cx('descriptionTourContainer__Item__content__Item')}>
-                            {arrayNecessary.map((item, index) => {
-                                return (
-                                    <li key={index}>
-                                        {item.icon}
-                                        <span>{item.name}</span>
-                                    </li>
-                                );
-                            })}
-                        </ul>
                     </div>
                 </div>
             </div>

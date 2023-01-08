@@ -7,6 +7,8 @@ import { handleGetAbroadTour, handleGetAllTour } from '../../../handleEvent/hand
 import { FaArrowRight } from 'react-icons/fa';
 import { Buffer } from 'buffer';
 import { ToastContainer } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBorderAll, faList } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 function ListTours({ limit }) {
     const dispatch = useDispatch();
@@ -20,12 +22,33 @@ function ListTours({ limit }) {
     }, []);
 
     const ListTourWrapper = useRef();
-
     console.log(allTour);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
+                <div className={cx('toolFilter')}></div>
                 <div className={cx('row')} ref={ListTourWrapper}>
+                    <div className={cx('placeStart')}>
+                        <div className={cx('placeStart__Item')}>
+                            <div className={cx('placeStart__Heading')}>
+                                <span>Bạn muốn khởi hành ở đâu ?</span>
+                            </div>
+                            <div className={cx('placeStart__check')}>
+                                <div className={cx('placeStart__check__Item')}>
+                                    <input type={'checkbox'} />
+                                    <span>Thành phố Hồ Chí Minh</span>
+                                </div>
+                                <div className={cx('placeStart__check__Item')}>
+                                    <input type={'checkbox'} />
+                                    <span>Hà Nội</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={cx('toolFilter__Icon')}>
+                        <FontAwesomeIcon icon={faList} />
+                        <FontAwesomeIcon icon={faBorderAll} />
+                    </div>
                     {allTour
                         ? allTour.data.data.map((res, index) => {
                               const imageBuffer = new Buffer(res.backGround, 'base64').toString('binary');
@@ -58,7 +81,15 @@ function ListTours({ limit }) {
                                           </div>
                                           <div className={cx('footer')}>
                                               <div className={cx('btnBooking')}>
-                                                  <button className={cx('btnBooking__Item')}>
+                                                  <button
+                                                      className={cx('btnBooking__Item')}
+                                                      onClick={(event) => {
+                                                          event.preventDefault();
+                                                          navigate(
+                                                              `/DescriptionTour${res.maloaimien}/${res.maloaitour}`,
+                                                          );
+                                                      }}
+                                                  >
                                                       Book ngay <FaArrowRight />
                                                   </button>
                                               </div>

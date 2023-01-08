@@ -1,39 +1,36 @@
-.wrapper{
+.wrapper {
 }
-.container{
-    
+.container {
     margin-top: 250px;
     z-index: 2;
-    .Heading{
+    .Heading {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-bottom: 40px;
-        span{
+        span {
             font-size: 16px;
         }
-        h1{
+        h1 {
             font-size: 30px;
             font-weight: 600;
             color: var(--title);
         }
-        img{
+        img {
             width: 60px;
-            object-fit: cover
+            object-fit: cover;
         }
-        .starIcon{
+        .starIcon {
             margin-right: 4px;
-            font-size: 14px
+            font-size: 14px;
         }
-    };
-   
+    }
 }
-.MoreTour{
-   
+.MoreTour {
     display: flex;
     justify-content: center;
     margin-top: 40px;
-    .btn{
+    .btn {
         position: relative;
         display: flex;
         justify-content: center;
@@ -46,5 +43,12 @@
         font-weight: 500;
     }
 }
-
-
+.startIcon {
+    svg {
+        font-size: 20px;
+        color: #fa9e1b;
+        + svg {
+            margin-left: 4px;
+        }
+    }
+}

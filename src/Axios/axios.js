@@ -55,3 +55,17 @@ export const createDescription = (body) => {
         console.log(error);
     }
 };
+export const getDetailTour = (maloaimien) => {
+    try {
+        return axios.get(`http://localhost:9999/api/getDetailTour?maloaimien=${maloaimien}`);
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const getAllScheduleTour = (maloaitour) => {
+    try {
+        return axios.get(`http://localhost:9999/api/getAllScheduleTour?maloaitour=${maloaitour}`);
+    } catch (error) {
+        console.log(error);
+    }
+};

@@ -1,21 +1,21 @@
-.wrapper{
+.wrapper {
     margin: 0;
 }
-.listItem{
+.listItem {
     position: relative;
-    font-size: 15px;
+    font-size: 17px;
     margin: 0 20px;
     padding: 10px 0;
-    color: var(--white);
+    color: #555555;
     font-weight: 600;
     transition: 0.2s;
-    &:hover{
+    &:hover {
         color: var(--title);
     }
-    &:hover::after{
+    &:hover::after {
         width: 100%;
     }
-    &::after{
+    &::after {
         content: '';
         width: 0;
         height: 3px;
@@ -25,5 +25,4 @@
         background-color: var(--black);
         transition: 0.4s;
     }
-    
 }

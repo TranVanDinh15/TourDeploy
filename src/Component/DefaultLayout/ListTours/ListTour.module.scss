@@ -13,17 +13,20 @@
     transition: 1.4s;
 }
 .col {
-    border: 1px solid #fa9e1b;
+    border: 1px solid #dddd;
     margin-top: 40px;
     display: flex;
     padding: 20px;
     width: 100%;
+    // background-color: #282c34;
+    border-radius: 10px;
 }
 .col__Image {
     overflow: hidden;
     // width: 280px;
     // height: 300px;
     flex-basis: 30%;
+
     img {
         width: 280px;
         height: 100%;
@@ -35,13 +38,15 @@
     position: relative;
     padding: 10px 25px;
     min-height: 250px;
-    background-color: var(--white);
+    // background-color: var(--white);
     flex-basis: 70%;
+    // background-color: #282c34;
+
     .description span {
         font-size: 14px;
         font-weight: 500;
         text-align: justify;
-        color: #919191;
+        // color: #fff;
         line-height: 2;
     }
 }
@@ -60,8 +65,10 @@
     font-size: 16px;
     font-weight: 700;
     padding: 10px 0;
+    // color: #fff;
+
     span {
-        color: #eda84a;
+        // color: #fff;
         font-size: 18px;
     }
 }
@@ -73,7 +80,7 @@
     height: 50px;
     border: none;
     color: var(--white);
-    background: linear-gradient(to right, #fa9e1b, #8d4fff);
+    background: #fa9e1b;
     border-radius: 50px;
     font-size: 14px;
     font-weight: 600;
@@ -116,8 +123,53 @@
     padding: 20px 0;
     float: right;
     span {
-        color: #8d4fff;
+        color: #fa9e1b;
         font-size: 22px;
         font-weight: 700;
     }
+}
+.toolFilter__Icon {
+    display: flex;
+    // justify-content: center;
+    width: 100%;
+    border: 1px solid #dddd;
+    padding: 10px 20px;
+    svg {
+        font-size: 20px;
+        cursor: pointer;
+        + svg {
+            margin-left: 20px;
+        }
+    }
+}
+.placeStart {
+    margin-bottom: 20px;
+    float: right;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+.placeStart__Item {
+    background-color: #fa9e1b;
+    padding: 20px;
+    border-radius: 10px;
+}
+.placeStart__check {
+    .placeStart__check__Item {
+        span {
+            margin-left: 10px;
+        }
+    }
+}
+.placeStart__check__Item {
+    background-color: #fff;
+    padding: 4px;
+    margin-top: 10px;
+    font-weight: 600;
+    border-radius: 4px;
+}
+.placeStart__Heading {
+    color: #fff;
+    font-weight: 500;
 }

@@ -1,11 +1,11 @@
-.wrapper{
+.wrapper {
     display: flex;
     position: relative;
     flex-basis: 20%;
     justify-content: right;
     margin-right: 10px;
 }
-.iconItem{
+.iconItem {
     display: flex;
     align-items: center;
     margin: 0 26px;
@@ -15,31 +15,31 @@
     cursor: pointer;
     transition: 0.2s;
     background-color: initial;
-    color: var( --white) !important;
-    &:hover{
+    color: #555555 !important;
+    &:hover {
         color: var(--facebook);
     }
 }
-.iconItem{
+.iconItem {
     color: var(--black);
 }
-.userName{
+.userName {
     display: flex;
     align-items: center;
     font-size: 16px;
-    color: var( --facebook);
+    color: var(--facebook);
 }
-.inputItem{
-  display: none;
+.inputItem {
+    display: none;
 }
 
-.display{
+.display {
     display: block;
     position: absolute;
     bottom: -46px;
     right: 268px;
     animation: displayFrame ease 0.4s;
-    input{
+    input {
         border-radius: 10px;
         overflow: hidden;
         padding: 10px;
@@ -47,15 +47,14 @@
         border: 2px solid var(--primary);
         width: 200px;
         padding: 10px;
-        border: 2px solid var(--primary)
+        border: 2px solid var(--primary);
     }
-    
 }
-@keyframes displayFrame{
-    from{
+@keyframes displayFrame {
+    from {
         transform: translateY(-200px);
     }
-    to{
+    to {
         transform: translateY(0);
     }
 }
