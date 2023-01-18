@@ -3,11 +3,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import {
     createAroadTour,
     createDescription,
+    createSan,
     createTour,
     getAbroadTour,
     getAllAroadTour,
     getAllScheduleTour,
     getAllTour,
+    getALlTourPlace,
+    getDetailSanTour,
     getDetailTour,
     loginUser,
     logoutUser,
@@ -191,6 +194,38 @@ export const handleGetAllScheduleTour = async (maloaitour, setState) => {
         const response = await getAllScheduleTour(maloaitour);
         if (response) {
             setState(response.data);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const handleGetTourAllPlace = async (diemxuatphat, setState) => {
+    try {
+        const result = await getALlTourPlace(diemxuatphat);
+        if (result) {
+            setState(result);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const handleCreateSan = async (body) => {
+    try {
+        const response = await createSan(body);
+        if (response) {
+            console.log(response);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const handleGetSanTour = async (maloaitour, setState) => {
+    try {
+        const response = await getDetailSanTour(maloaitour);
+        if (response) {
+            if (response.data.errCode == 0) {
+                setState(response.data.data);
+            }
         }
     } catch (error) {
         console.log(error);

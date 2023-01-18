@@ -9,6 +9,7 @@ import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import FormCreateTour from '../form/form';
 import { useState } from 'react';
 import FormCreateDescriptionTour from '../form/createDescriptionTour';
+import FormCreateSanTour from '../form/formCreateSan';
 const cx = classNames.bind(styles);
 function TourSystem() {
     const title = {
@@ -17,6 +18,7 @@ function TourSystem() {
     };
     const [isTour, setIsTour] = useState(false);
     const [isDesciptionTour, setIsDescriptionTour] = useState(false);
+    const [isSan, setIsSan] = useState(false);
     return (
         <div className={cx('TourSystemWrapper')}>
             <HeaderSystem title={title} />
@@ -26,6 +28,8 @@ function TourSystem() {
                 setIsFormCreate={setIsTour}
                 isFormDescription={isDesciptionTour}
                 setIsFormDescription={setIsDescriptionTour}
+                isSan={isSan}
+                setIsSan={setIsSan}
             />
             {isTour ? (
                 <NavBar navBarArray={arrayNavbarTour} FormCreateAccount={isTour ? <FormCreateTour /> : ''} />
@@ -40,6 +44,7 @@ function TourSystem() {
             ) : (
                 ''
             )}
+            {isSan ? <NavBar navBarArray={arrayNavbarTour} FormCreateAccount={<FormCreateSanTour />} /> : ''}
         </div>
     );
 }

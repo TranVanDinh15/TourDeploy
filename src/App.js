@@ -14,6 +14,7 @@ import UserSystem from './Page/system/userSystem/userSystem';
 import AbroadTour from './Page/system/abroadTour/abroadTour';
 import TourSystem from './Page/system/tourSystem/tourSystem';
 import DescriptionTour from './Page/descriptionTour/descriptionTour';
+import PayLoad from './Page/payLoad/payLoad';
 // import jwt_decode from 'jwt-decode';
 
 // var token =
@@ -33,6 +34,7 @@ function App() {
                     <Route path="/loading" element={<Loading />} />
                     <Route path="/addTour" element={<Addtours />} />
                     <Route path="/AllTour" element={<AllTours />} />
+                    <Route path="/thanh-toan-tour/:maloaitour" element={<PayLoad />} />
                     <Route path="/DescriptionTour/:id/:maloaitour" element={<DescriptionTour />} />
                     <Route path="/System/loginSystem" element={<LoginSystem />} />
                     <Route path="/System/userSystem" element={<UserSystem />} />

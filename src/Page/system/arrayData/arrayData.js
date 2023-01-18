@@ -46,6 +46,12 @@ export const toolTour = [
         name: 'Chi Tiết Tour',
         backGroundBtn: 'green',
     },
+    {
+        id: 3,
+        icon: <FontAwesomeIcon icon={faCirclePlus} />,
+        name: 'Thêm dịch vụ và ghi chú Tour',
+        backGroundBtn: 'green',
+    },
 ];
 export const arrayNavbarTour = [
     {

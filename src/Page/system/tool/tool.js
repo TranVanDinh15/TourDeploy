@@ -2,7 +2,7 @@ import styles from './tool.module.scss';
 import classNames from 'classnames/bind';
 import { handleClickTool } from '../../../handleEvent/handleEvent';
 const cx = classNames.bind(styles);
-function Tool({ arrayData, isFormCreate, setIsFormCreate, isFormDescription, setIsFormDescription }) {
+function Tool({ arrayData, isFormCreate, setIsFormCreate, isFormDescription, setIsFormDescription, isSan, setIsSan }) {
     return (
         <div className={cx('ToolWrapper')}>
             <ul className={cx('ToolWrapper__List')}>
@@ -22,6 +22,16 @@ function Tool({ arrayData, isFormCreate, setIsFormCreate, isFormDescription, set
                                                   setIsFormDescription(false);
                                               } else {
                                                   setIsFormDescription(true);
+                                                  setIsFormCreate(false);
+                                                  setIsSan(false);
+                                              }
+                                          }
+                                          if (data.id == 3) {
+                                              if (isSan) {
+                                                  setIsSan(false);
+                                              } else {
+                                                  setIsSan(true);
+                                                  setIsFormDescription(false);
                                                   setIsFormCreate(false);
                                               }
                                           }

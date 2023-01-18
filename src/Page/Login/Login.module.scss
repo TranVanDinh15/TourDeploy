@@ -193,3 +193,14 @@
         }
     }
 }
+.formSignUp {
+    min-width: 600px !important;
+}
+.formSignUp__Item {
+    display: flex;
+    .formLogin__Item__Heading {
+        + .formLogin__Item__Heading {
+            margin-left: 10px;
+        }
+    }
+}

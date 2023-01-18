@@ -19,6 +19,16 @@ function Login() {
         email: '',
         password: '',
     });
+    const [requestSignUp, setRequestSignUp] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        gender: '',
+        date: '',
+        address: '',
+        role: '',
+    });
     // Xử Lý sự kiện Login Fb
     const handleLoginFB = () => {
         signInWithPopup(auth, provider);
@@ -34,7 +44,7 @@ function Login() {
     return (
         <>
             <Header />
-            <div className={cx('wrapper')}>
+            {/* <div className={cx('wrapper')}>
                 <div className={cx('form')}>
                     <div className={cx('Heading')}>
                         <h4>Đăng Nhập</h4>
@@ -89,6 +99,117 @@ function Login() {
                         <div className={cx('LoginAppIcon')} onClick={handleLoginGG}>
                             <FaGoogle className={cx('icon_Item')} />
                             <span>Tiếp tục với Google</span>
+                        </div>
+                    </div>
+                </div>
+            </div> */}
+            <div className={cx('wrapper')}>
+                <div className={cx('form', 'formSignUp')}>
+                    <div className={cx('Heading')}>
+                        <h4>Đăng Ký</h4>
+                    </div>
+                    <div className={cx('formLogin')}>
+                        <div className={cx('formLogin__Item')}>
+                            <div className={cx('formLogin__Item', 'formSignUp__Item')}>
+                                <div className={cx('formLogin__Item__Heading')}>
+                                    <span>Họ và tên đệm</span>
+                                    <input
+                                        type={'text'}
+                                        // placeholder={'Nhập Email...'}
+                                        value={requestSignUp.firstName}
+                                        onChange={(event) => {
+                                            setRequestLogin({
+                                                ...requestLogin,
+                                                firstName: event.target.value,
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                <div className={cx('formLogin__Item__Heading')}>
+                                    <span>Tên của bạn</span>
+                                    <input
+                                        type={'text'}
+                                        // placeholder={'Nhập Email...'}
+                                        value={requestSignUp.lastName}
+                                        onChange={(event) => {
+                                            setRequestLogin({
+                                                ...requestLogin,
+                                                lastName: event.target.value,
+                                            });
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className={cx('formLogin__Item', 'formSignUp__Item')}>
+                                <div className={cx('formLogin__Item__Heading')}>
+                                    <span>email</span>
+                                    <input
+                                        type={'text'}
+                                        // placeholder={'Nhập Email...'}
+                                        value={requestSignUp.email}
+                                        onChange={(event) => {
+                                            setRequestLogin({
+                                                ...requestLogin,
+                                                email: event.target.value,
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                <div className={cx('formLogin__Item__Heading')}>
+                                    <span>Mật Khẩu</span>
+                                    <input
+                                        type={'text'}
+                                        // placeholder={'Nhập Email...'}
+                                        value={requestSignUp.password}
+                                        onChange={(event) => {
+                                            setRequestLogin({
+                                                ...requestLogin,
+                                                password: event.target.value,
+                                            });
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className={cx('formLogin__Item', 'formSignUp__Item')}>
+                                <div className={cx('formLogin__Item__Heading')}>
+                                    <span>email</span>
+                                    <input
+                                        type={'text'}
+                                        // placeholder={'Nhập Email...'}
+                                        value={requestSignUp.email}
+                                        onChange={(event) => {
+                                            setRequestLogin({
+                                                ...requestLogin,
+                                                email: event.target.value,
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                <div className={cx('formLogin__Item__Heading')}>
+                                    <span>Mật Khẩu</span>
+                                    <input
+                                        type={'text'}
+                                        // placeholder={'Nhập Email...'}
+                                        value={requestSignUp.password}
+                                        onChange={(event) => {
+                                            setRequestLogin({
+                                                ...requestLogin,
+                                                password: event.target.value,
+                                            });
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className={cx('formLogin__Item__btn')}>
+                                <button
+                                    onClick={(event) => {
+                                        event.preventDefault();
+                                        handleLogin(requestLogin, dispatch, navigate);
+                                    }}
+                                >
+                                    Đăng Nhập
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

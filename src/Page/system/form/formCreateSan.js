@@ -1,50 +1,39 @@
 import styles from './form.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPlane, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import { handleCreateDescription } from '../../../handleEvent/handleEvent';
-import { ToastContainer } from 'react-toastify';
+import { handleCreateAboadSytem, handleCreateSan } from '../../../handleEvent/handleEvent';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
-// import style manually
 import 'react-markdown-editor-lite/lib/index.css';
 const cx = classNames.bind(styles);
-function FormCreateDescriptionTour({ FormArray }) {
-    const convertBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const newFileReader = new FileReader();
-            newFileReader.readAsDataURL(file);
-            newFileReader.onload = () => {
-                resolve(newFileReader.result);
-            };
-            newFileReader.onerror = (error) => {
-                reject(error);
-            };
-        });
-    };
+function FormCreateSanTour({ FormArray }) {
     const [requestCreate, setRequestCreate] = useState({
         maloaitour: '',
-        manoidung: '',
-        lichtrinhtheongay: '',
-        noidung: '',
+        masan: '',
+        dichvu: '',
+        ghichu: '',
     });
-    // Initialize a markdown parser
+    console.log(requestCreate);
     const mdParser = new MarkdownIt(/* Markdown-it options */);
-    // Finish!
     function handleEditorChange({ html, text }) {
-        // console.log('handleEditorChange', html, text);
         setRequestCreate({
             ...requestCreate,
-            noidung: html,
+            dichvu: html,
         });
     }
-    console.log(requestCreate);
+    function handleEditorNote({ html, text }) {
+        setRequestCreate({
+            ...requestCreate,
+            ghichu: html,
+        });
+    }
     return (
         <div className={cx('FormContainer')}>
             <div className={cx('FormContainer__Item')}>
                 <FontAwesomeIcon icon={faPlane} />
-                Mô tả lịch trình
+                Dịch vụ và ghi chú
             </div>
             <div className={cx('FormContainer__FormItem')}>
                 <div className={cx('FormContainer__FormItem__nav')}>
@@ -67,16 +56,16 @@ function FormCreateDescriptionTour({ FormArray }) {
                     </div>
                     <div className={cx('FormContainer__FormItem__container')}>
                         <div className={cx('FormContainer__FormItem__field')}>
-                            <span>Mã Nội Dung</span>
+                            <span>Mã san</span>
                         </div>
                         <div className={cx('FormContainer__FormItem__input')}>
                             <input
                                 type={'text'}
-                                value={requestCreate.manoidung}
+                                value={requestCreate.masan}
                                 onChange={(event) => {
                                     setRequestCreate({
                                         ...requestCreate,
-                                        manoidung: event.target.value,
+                                        masan: event.target.value,
                                     });
                                 }}
                             />
@@ -84,41 +73,24 @@ function FormCreateDescriptionTour({ FormArray }) {
                     </div>
                     <div className={cx('FormContainer__FormItem__container')}>
                         <div className={cx('FormContainer__FormItem__field')}>
-                            <span>Lịch Trình Theo Ngày</span>
+                            <span>Mô tả dịch vụ</span>
                         </div>
                         <div className={cx('FormContainer__FormItem__input')}>
-                            <input
-                                type={'text'}
-                                value={requestCreate.lichtrinhtheongay}
-                                onChange={(event) => {
-                                    setRequestCreate({
-                                        ...requestCreate,
-                                        lichtrinhtheongay: event.target.value,
-                                    });
-                                }}
+                            <MdEditor
+                                style={{ height: '300px', width: '900px' }}
+                                renderHTML={(text) => mdParser.render(text)}
+                                onChange={handleEditorChange}
                             />
                         </div>
                     </div>
                     <div className={cx('FormContainer__FormItem__container')}>
                         <div className={cx('FormContainer__FormItem__field')}>
-                            <span>Nội Dung</span>
+                            <span>Ghi chú Tour</span>
                         </div>
-                        {/*<div className={cx('FormContainer__FormItem__input')}>
-                            <input
-                                type={'text'}
-                                value={requestCreate.noidung}
-                                onChange={(event) => {
-                                    setRequestCreate({
-                                        ...requestCreate,
-                                        noidung: event.target.value,
-                                    });
-                                }}
-                            />
-                        </div> */}
                         <MdEditor
                             style={{ height: '300px', width: '900px' }}
                             renderHTML={(text) => mdParser.render(text)}
-                            onChange={handleEditorChange}
+                            onChange={handleEditorNote}
                         />
                     </div>
                 </div>
@@ -126,15 +98,14 @@ function FormCreateDescriptionTour({ FormArray }) {
                     <button
                         onClick={(event) => {
                             event.preventDefault();
-                            handleCreateDescription(requestCreate);
+                            handleCreateSan(requestCreate);
                         }}
                     >
                         Tạo
                     </button>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     );
 }
-export default FormCreateDescriptionTour;
+export default FormCreateSanTour;

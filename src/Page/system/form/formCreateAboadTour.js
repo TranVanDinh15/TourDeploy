@@ -5,6 +5,11 @@ import { faPlane, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import { handleCreateAboadSytem } from '../../../handleEvent/handleEvent';
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+// import style manually
+import 'react-markdown-editor-lite/lib/index.css';
+
 const cx = classNames.bind(styles);
 function FormCreateAbroadTour({ FormArray }) {
     const convertBase64 = (file) => {
@@ -23,7 +28,12 @@ function FormCreateAbroadTour({ FormArray }) {
         matournuocngoai: '',
         tencactournuocngoai: '',
     });
-    console.log(requestCreate);
+    // Initialize a markdown parser
+    const mdParser = new MarkdownIt(/* Markdown-it options */);
+    // Finish!
+    function handleEditorChange({ html, text }) {
+        console.log('handleEditorChange', html, text);
+    }
     return (
         <div className={cx('FormContainer')}>
             <div className={cx('FormContainer__Item')}>
@@ -66,7 +76,6 @@ function FormCreateAbroadTour({ FormArray }) {
                             />
                         </div>
                     </div>
-                    
                 </div>
                 <div className={cx('FormContainer__FormItem__container__btn')}>
                     <button
@@ -79,6 +88,11 @@ function FormCreateAbroadTour({ FormArray }) {
                     </button>
                 </div>
             </div>
+            <MdEditor
+                style={{ height: '500px' }}
+                renderHTML={(text) => mdParser.render(text)}
+                onChange={handleEditorChange}
+            />
         </div>
     );
 }

@@ -1,15 +1,17 @@
 import styles from './descriptionTour.module.scss';
 import classNames from 'classnames/bind';
 import Header from '../../Component/DefaultLayout/Header';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faCircleInfo, faNoteSticky, faPaperclip, faStar, faTv } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarCheck, faCircleDot } from '@fortawesome/free-regular-svg-icons';
 import { useEffect, useRef, useState } from 'react';
-import { handleGetAllScheduleTour, handleGetDetailTour } from '../../handleEvent/handleEvent';
+import { handleGetAllScheduleTour, handleGetDetailTour, handleGetSanTour } from '../../handleEvent/handleEvent';
 import { Buffer } from 'buffer';
+import { toast, ToastContainer } from 'react-toastify';
 const cx = classNames.bind(styles);
 function DescriptionTour() {
+    const navigate = useNavigate();
     const params = useParams();
     console.log(params);
     const arrayNecessary = [
@@ -44,11 +46,24 @@ function DescriptionTour() {
     const [offset, setOffset] = useState(0);
     const [isSchedule, setIsSchedule] = useState(false);
     const [isVideo, setIsVideo] = useState(false);
-
+    const [detailSan, setDetailSan] = useState('');
+    const [isSan, setIsSan] = useState(false);
+    const [isNote, setIsNote] = useState(false);
+    const [dateStart, setDateStart] = useState('');
+    const handleToPayLoad = () => {
+        if (!dateStart) {
+            toast.warning('Vui lòng chọn ngày khởi hành !!', {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+        } else {
+            navigate(`/thanh-toan-tour/${params.maloaitour}`);
+        }
+    };
     useEffect(() => {
         if (params) {
             handleGetDetailTour(params.id, setDetailTour);
             handleGetAllScheduleTour(params.maloaitour, setAllScheduleTour);
+            handleGetSanTour(params.maloaitour, setDetailSan);
         }
         const onScroll = () => setOffset(window.pageYOffset);
         // clean up code
@@ -56,9 +71,7 @@ function DescriptionTour() {
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
-    console.log(detailTour);
-    console.log(allScheduleTour);
-    console.log(offset);
+    console.log(dateStart);
     return (
         <div className={cx('descriptionTourContainer')}>
             <Header />
@@ -138,21 +151,62 @@ function DescriptionTour() {
                                                   <span>{item.lichtrinhtheongay}</span>
                                               </div>
                                           </div>
-                                          <div className={cx('HightLightTour__dateSchedule__text')}>
-                                              <p>{item.noidung}</p>
-                                          </div>
+                                          <div
+                                              className={cx('HightLightTour__dateSchedule__text')}
+                                              dangerouslySetInnerHTML={{ __html: item.noidung }}
+                                          ></div>
                                       </div>
                                   );
                               })
                             : ''}
-                        <div className={cx('HightLightTour__Heading')}>
+                        <div
+                            className={cx('HightLightTour__Heading')}
+                            onClick={(event) => {
+                                if (isSan) {
+                                    setIsSan(false);
+                                } else {
+                                    setIsSan(true);
+                                }
+                            }}
+                        >
                             <FontAwesomeIcon icon={faPaperclip} />
                             <span>Dịch vụ bao gồm và không bao gồm</span>
                         </div>
-                        <div className={cx('HightLightTour__Heading')}>
+                        <div className={cx('HightLightTour__Heading__Content')}>
+                            {detailSan && isSan
+                                ? detailSan.map((item, index) => {
+                                      return (
+                                          <div
+                                              className={cx('HightLightTour__Heading__Content__Item')}
+                                              dangerouslySetInnerHTML={{ __html: item.dichvu }}
+                                          ></div>
+                                      );
+                                  })
+                                : ''}
+                        </div>
+                        <div
+                            className={cx('HightLightTour__Heading')}
+                            onClick={(event) => {
+                                if (isNote) {
+                                    setIsNote(false);
+                                } else {
+                                    setIsNote(true);
+                                }
+                            }}
+                        >
                             <FontAwesomeIcon icon={faNoteSticky} />
                             <span>Ghi chú</span>
                         </div>
+                        {detailSan && isNote
+                            ? detailSan.map((item, index) => {
+                                  return (
+                                      <div
+                                          className={cx('HightLightTour__Heading__Content__Item')}
+                                          dangerouslySetInnerHTML={{ __html: item.ghichu }}
+                                      ></div>
+                                  );
+                              })
+                            : ''}
                         <div
                             className={cx('HightLightTour__Heading')}
                             onClick={(event) => {
@@ -235,9 +289,20 @@ function DescriptionTour() {
                                             'descriptionTourContainer__Item__content__Item__BoxPrice__optionDate',
                                         )}
                                     >
-                                        <input type={'date'} />
+                                        <input
+                                            type={'date'}
+                                            value={dateStart}
+                                            onChange={(event) => {
+                                                setDateStart(event.target.value);
+                                            }}
+                                        />
                                     </div>
-                                    <div className={cx('btn__Contact')}>
+                                    <div
+                                        className={cx('btn__Contact')}
+                                        onClick={(event) => {
+                                            handleToPayLoad();
+                                        }}
+                                    >
                                         <button>Liên Hệ</button>
                                     </div>
                                 </div>
@@ -256,6 +321,7 @@ function DescriptionTour() {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }

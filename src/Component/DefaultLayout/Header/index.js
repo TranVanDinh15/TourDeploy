@@ -3,7 +3,9 @@ import classNames from 'classnames/bind';
 import Logo from './Logo';
 import ListMenu from './ListMenu';
 import ListIcon from './ListIcon';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faAnglesDown } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 const ListMenuItem = [
     {
@@ -34,9 +36,26 @@ function Header() {
             headerRef.current.style.backgroundColor = 'white';
         }
     };
+    const [isSubNav, setIsSubNav] = useState(false);
     return (
         <div className={cx('wrapper')} ref={headerRef}>
-            <div className={cx('headerOne')}></div>
+            <div className={cx('headerOne')}>
+                <div
+                    className={cx('headerOne__Hotline')}
+                    onClick={(event) => {
+                        if (isSubNav) {
+                            setIsSubNav(false);
+                        } else {
+                            setIsSubNav(true);
+                        }
+                    }}
+                >
+                    <span>Hotline: </span>
+                    <span>0123456389</span>
+                    <FontAwesomeIcon icon={faAngleDown} />
+                </div>
+                {isSubNav ? <div className={cx('headerOne__SubNav')}></div> : ''}
+            </div>
             <div className={cx('container')}>
                 <Logo />
                 <ListMenu />

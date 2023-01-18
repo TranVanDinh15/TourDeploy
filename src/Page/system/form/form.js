@@ -43,6 +43,7 @@ function FormCreateTour({ FormArray }) {
         maloaitour: '',
         maloaimien: '',
         matournuocngoai: '',
+        diemxuatphat: '',
     });
     const [allAbroadTour, setAllAbroadTour] = useState('');
     useEffect(() => {
@@ -187,6 +188,23 @@ function FormCreateTour({ FormArray }) {
                                 setRequestCreate({
                                     ...requestCreate,
                                     maloaimien: event.target.value,
+                                });
+                            }}
+                        />
+                    </div>
+                </div>
+                <div className={cx('FormContainer__FormItem__container')}>
+                    <div className={cx('FormContainer__FormItem__field')}>
+                        <span>Điểm xuất phát</span>
+                    </div>
+                    <div className={cx('FormContainer__FormItem__input')}>
+                        <input
+                            type={'text'}
+                            value={requestCreate.diemxuatphat}
+                            onChange={(event) => {
+                                setRequestCreate({
+                                    ...requestCreate,
+                                    diemxuatphat: event.target.value,
                                 });
                             }}
                         />

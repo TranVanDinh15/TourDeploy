@@ -69,3 +69,24 @@ export const getAllScheduleTour = (maloaitour) => {
         console.log(error);
     }
 };
+export const getALlTourPlace = (diemxuatphat) => {
+    try {
+        return axios.get(`http://localhost:9999/api/getTourPlace?diemxuatphat=${diemxuatphat}`);
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const createSan = (body) => {
+    try {
+        return axios.post('http://localhost:9999/api/createSan', body);
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const getDetailSanTour = (maloaitour) => {
+    try {
+        return axios.get(`http://localhost:9999/api/getAllSan?maloaitour=${maloaitour}`);
+    } catch (error) {
+        console.log(error);
+    }
+};

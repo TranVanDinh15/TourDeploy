@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { handleGetAbroadTour, handleGetAllTour } from '../../../handleEvent/handleEvent';
+import { handleGetAbroadTour, handleGetAllTour, handleGetTourAllPlace } from '../../../handleEvent/handleEvent';
 import { FaArrowRight } from 'react-icons/fa';
 import { Buffer } from 'buffer';
 import { ToastContainer } from 'react-toastify';
@@ -14,12 +14,17 @@ function ListTours({ limit }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [allTour, setAllTour] = useState('');
+    const [isCheckHCM, setIsCheckHCM] = useState(true);
+    const [isCheckHN, setIsCheckHN] = useState(false);
+    const [placeTour, setPlaceTour] = useState({
+        place: 'HCM',
+    });
     let tourAbroad = '';
     // Get Api Tour
     useEffect(() => {
-        // getTours(url, setListTour, limit);
-        handleGetAllTour(setAllTour, 1);
-    }, []);
+        // handleGetAllTour(setAllTour, 1);
+        handleGetTourAllPlace(placeTour.place, setAllTour);
+    }, [placeTour.place]);
 
     const ListTourWrapper = useRef();
     console.log(allTour);
@@ -35,11 +40,41 @@ function ListTours({ limit }) {
                             </div>
                             <div className={cx('placeStart__check')}>
                                 <div className={cx('placeStart__check__Item')}>
-                                    <input type={'checkbox'} />
+                                    <input
+                                        type={'checkbox'}
+                                        value={'HCM'}
+                                        onChange={(event) => {
+                                            if (isCheckHCM) {
+                                                setIsCheckHCM(false);
+                                            } else {
+                                                setIsCheckHCM(true);
+                                                setIsCheckHN(false);
+                                            }
+                                            setPlaceTour({
+                                                place: event.target.value,
+                                            });
+                                        }}
+                                        checked={isCheckHCM ? true : false}
+                                    />
                                     <span>Thành phố Hồ Chí Minh</span>
                                 </div>
                                 <div className={cx('placeStart__check__Item')}>
-                                    <input type={'checkbox'} />
+                                    <input
+                                        type={'checkbox'}
+                                        value={'HN'}
+                                        onChange={(event) => {
+                                            if (isCheckHN) {
+                                                setIsCheckHN(false);
+                                            } else {
+                                                setIsCheckHN(true);
+                                                setIsCheckHCM(false);
+                                            }
+                                            setPlaceTour({
+                                                place: event.target.value,
+                                            });
+                                        }}
+                                        checked={isCheckHN ? true : false}
+                                    />
                                     <span>Hà Nội</span>
                                 </div>
                             </div>
@@ -50,7 +85,7 @@ function ListTours({ limit }) {
                         <FontAwesomeIcon icon={faBorderAll} />
                     </div>
                     {allTour
-                        ? allTour.data.data.map((res, index) => {
+                        ? allTour.data.tour.map((res, index) => {
                               const imageBuffer = new Buffer(res.backGround, 'base64').toString('binary');
                               return (
                                   <div key={index} className={cx('col')} onClick={() => {}}>

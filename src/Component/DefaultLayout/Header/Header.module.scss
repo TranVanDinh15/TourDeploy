@@ -26,3 +26,35 @@
     height: 40px;
     background-color: #fa9e1b;
 }
+.headerOne__Hotline {
+    position: relative;
+    padding: 0 30px;
+    // display: flex;
+    // align-items: center;
+    line-height: 40px;
+    span {
+        font-size: 20px;
+        color: #fff;
+        font-weight: 500;
+        + span {
+            font-size: 16px;
+            color: red;
+            font-weight: 600;
+        }
+    }
+    svg {
+        font-size: 16px;
+        color: #fff;
+        margin-left: 4px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+}
+.headerOne__SubNav {
+    width: 250px;
+    min-height: 200px;
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    background-color: #fff;
+}
